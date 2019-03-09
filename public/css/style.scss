@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700');
+
+$primary_font : 'Montserrat', serif;
+
+
+$primary-color: #ffffff;
+$primary-light-shaded: #eff2f7;
+$primary-shaded-text: #d1d5da;
+$primary-shaded-darker-text: #6c737d;
+$primary-text: #3c3c3c;
+
+$secondary-color: #252c33;
+$secondary-light-shaded: #2e343b;
+$secondary-shaded: #4d565f;
+$secondary-text: #ffffff;
+
+$primary-shaded: #eef0f2;
+$primary-dark-shaded: #e4e6ea;
+$blue: #2c85df;
+
+.header{
+    font-family: $primary_font;
+    //names and messages
+    &--main{
+        font-size: 15px;
+        color: $primary-color;
+        font-weight: 600;
+    }
+    //last message 
+    &--subheader{
+        font-size: 14px;
+        color: $primary-shaded-darker-text;
+        font-weight: 500;
+    }
+    //search and type
+    &--subheaderLight{
+        font-size: 15px;
+        color: $primary-shaded-text;
+        font-weight: 500;
+    }
+    &--secondary{
+        font-weight: 500;
+        color: $primary-color;
+        font-size: 15px;
+    }
+    &--secondaryShaded{
+        font-weight: 14px;
+        color: $secondary-shaded;
+        font-weight: 500;
+    }
+}
