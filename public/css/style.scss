@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700');
 
+@mixin placeholder {
+    &::-webkit-input-placeholder {@content}
+    &:-moz-placeholder           {@content}
+    &::-moz-placeholder          {@content}
+    &:-ms-input-placeholder      {@content}  
+  };
+
+  @mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+      -webkit-box-shadow: $top $left $blur $color;
+      -moz-box-shadow: $top $left $blur $color;
+      box-shadow: $top $left $blur $color;
+    
+  };
+
 $primary_font : 'Montserrat', serif;
 
 
@@ -18,12 +32,19 @@ $primary-shaded: #eef0f2;
 $primary-dark-shaded: #e4e6ea;
 $blue: #2c85df;
 
+//spacing
+
+$medium-spacing: 30px;
+$extralarge-spacing: 100px;
+$large-spacing: 50px;
+$min-spacing: 5px;
+
 .header{
     font-family: $primary_font;
     //names and messages
     &--main{
         font-size: 15px;
-        color: $primary-color;
+        color: $primary-text;
         font-weight: 600;
     }
     //last message 
@@ -41,11 +62,65 @@ $blue: #2c85df;
     &--secondary{
         font-weight: 500;
         color: $primary-color;
-        font-size: 15px;
+        font-size: 14px;
     }
     &--secondaryShaded{
         font-weight: 14px;
         color: $secondary-shaded;
         font-weight: 500;
+    }
+}
+
+.loginform{
+    border: 1px solid $primary-shaded;
+    width: 800px;
+    margin: $extralarge-spacing auto 0 auto;
+    @include box-shadow( 0px,0px, 15px, rgba(0,0,0,0.1));
+    &__header{
+        padding: $medium-spacing;
+    }
+    &__form{
+        display: flex;
+        width: 60%;
+        margin: $extralarge-spacing auto;
+        flex-direction: column;
+    }
+    &__label{
+       width: 25%;
+    }
+    &__list, &__input{
+        width: 75%;
+        float: right;
+        outline: none;
+        padding: $min-spacing;
+        border: 0;
+        box-sizing: border-box;
+        }
+        &__input{
+            @extend .header;
+        @extend .header--subheader;
+        @include placeholder {
+            font-family: $primary_font;
+            font-size: 15px;
+            color: $primary-shaded-darker-text;
+            font-weight: 500;
+        }
+        border: 1px solid $primary-light-shaded;
+        }
+        &__list{
+            border: 1px solid $primary-light-shaded;
+        }
+    &__group{
+        margin-bottom: $medium-spacing;
+    }
+    &__btn{
+        float: right;
+        background-color: $secondary-color;
+        border: none;
+        padding: $min-spacing $medium-spacing;
+        cursor: pointer;
+        &:hover{
+            background-color: $secondary-shaded
+        }
     }
 }

@@ -6,28 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <div class="main-container">
-        <h1 class="header--main"></h1>
-        <form action="" class="loginform">
+    <div class="loginform">  
+            <h1 class="header header--main loginform__header">Chat client by goeden22</h1>
+        <form action="" class="loginform__form">
+                
             <div class="loginform__group">
-                <label for="" class="header--main">Nickname:</label>
-                <input name="nickname" type="text" class="loginform__input">
+                <label for="" class="header header--main loginform__label">Nickname:</label>
+                <input name="nickname" type="text" class="loginform__input" placeholder="your nickname">
             </div>
             <div class="loginform__group">
-                <label for="" class="header--main">Room:</label>
-                <select name="rooms" class="loginform__list">
-                    <option value="room 1">room 1</option>
-                    <option value="room 2">room 2</option>
-                    <option value="room 3">room 3</option>
-                    <option value="room 4">room 4</option>
+                <label for="" class="header header--main loginform__label">Room:</label>
+                <select name="rooms" class="loginform__list header header--subheader" placeholder="select room">
+                    <option value="room 1" class="header header--subheader">room1</option>
+                    <option value="room 2" class="header header--subheader">room2</option>
+                    <option value="room 3" class="header header--subheader">room3</option>
+                    <option value="room 4" class="header header--subheader">room4</option>
                   </select> 
             </div>
-            <div class="loginform__group"><input type="submit" class="loginform__btn"></div>
+            <div class="loginform__group"><input type="submit" class="loginform__btn header header--secondary" value="enter"></div>
         </form>
     </div>
+    <script src='socket.io/socket.io.js'></script>
+    <script src='js/client.js'></script>
 </body>
 
 </html>
