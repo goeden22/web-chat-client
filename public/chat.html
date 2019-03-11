@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="appContainer">
+        <div class="users">
+            <div class="users__search">
+                <input type="text" class="users__searchinput" placeholder="search">
+            </div>
+            <div class="users__list"></div>
+            <div class="users__user">
+                <img src="" alt="" class="users__img">
+                <div class="users__description">
+                    <h1 class="header header--main">Johnny</h1>
+                    <h1 class="header header--subheader">Last message:
+                        <span class="header header--main"> 5min</span> ago</h1>
+                </div>
+            </div>
+            <div class="users__user">
+                <img src="" alt="" class="users__img">
+                <div class="users__description">
+                    <h1 class="header header--main">Tommy</h1>
+                    <h1 class="header header--subheader">Last message:
+                        <span class="header header--main"> 5min</span> ago</h1>
+                </div>
+            </div>
+        </div>
+        <div class="chat">
+            <div class="chat__topbar"></div>
+            <div class="chat__container">
+                <div class="chat__messagecontainer">
+                    <div class="chat__user"><img src="" alt="" class="smallAvatar">
+                    <h1 class="header header--subheader">Tommy</h1></div>
+                    <div class="chat__message"><p class="header header--main">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur, quasi!</p></div>
+                    <h1 class="header header--subheader chat__timestamp">13:20</h1>
+                </div>
+                <div class="chat__messagecontainer invertedmessage">
+                    <div class="chat__user"><img src="" alt="" class="smallAvatar">
+                    <h1 class="header header--subheader">Tommy</h1></div>
+                    <div class="chat__message"><p class="header header--secondary">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur, quasi!</p></div>
+                    <h1 class="header header--subheader chat__timestamp">13:21</h1>
+                </div>
+            </div>
+            <input type="text" class="chat__inputcontainer" placeholder="input message">
+                <span class="chat__input"></span>
+                <img src="" alt="" class="chat__icon">
+                <img src="" alt="" class="chat__icon">
+        </div>
+        <div class="rooms">
+            <div class="rooms__topbar">
+              
+                <select name="rooms" class="loginform__list header header--secondary" placeholder="select room">
+                    <option value="room 1" class="header header--secondary">room1</option>
+                    <option value="room 2" class="header header--secondary">room2</option>
+                    <option value="room 3" class="header header--secondary">room3</option>
+                    <option value="room 4" class="header header--secondary">room4</option>
+                  </select> 
+             
+            </div>
+            <div class="rooms__roomInfo">
+                <img src="" alt="" class="largeAvatar">
+                <h1 class="header header--secondary">room1</h1>
+                <div class="rooms__infogroup">
+                    <h1 class="header header--secondary">Name:</h1>
+                    <h1 class="header header--secondaryShaded">Room 1</h1>
+                </div>
+                <div class="rooms__infogroup">
+                    <h1 class="header header--secondary">Users:</h1>
+                    <h1 class="header header--secondaryShaded">2</h1>
+                </div>
+             
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
