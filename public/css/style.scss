@@ -37,8 +37,34 @@ $blue: #2c85df;
 $medium-spacing: 30px;
 $extralarge-spacing: 100px;
 $large-spacing: 50px;
+$small-spacing: 12px;
 $min-spacing: 5px;
 
+.sspace{
+    padding: $min-spacing;
+}
+h1,hr{
+    margin:  0;
+}
+.smallavatar{
+    height: 50px;
+    width:50px;
+    border-radius: 100%;
+    padding: $small-spacing;
+}
+.largeavatar{
+    height: 100px;
+    width:100px;
+    border-radius: 100%;
+    padding: $small-spacing;
+}
+.lightseparator{
+    height: 1px;
+    background-color: $primary-light-shaded;
+    width: 50%;
+    border: 0;
+    margin: 0 auto;
+}
 .header{
     font-family: $primary_font;
     //names and messages
@@ -135,18 +161,98 @@ $min-spacing: 5px;
 }
 .users{
     width: 20%;
-    background-color: $primary-color
+    background-color: $primary-color;
+    &__search{
+        height: 45px;
+        border-bottom: 1px solid $primary-light-shaded;
+        display: flex;
+    }
+    &__user{
+        display: flex;
+    }
+    &__searchinput{
+        border: none;
+        padding: $small-spacing;
+        @extend .header;
+        @extend .header--subheaderLight;
+        @include placeholder {
+            font-family: $primary_font;
+            font-size: 15px;
+            color: $primary-shaded-darker-text;
+            font-weight: 500;
+        }
+    }
+    &__img{
+        @extend .smallavatar;
+    }
+    &__description{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 }
 .rooms{
     width: 15%;
     background-color: $secondary-color;
+
+    &__topbar{
+        height: 45px;
+        border-bottom: 1px solid $secondary-light-shaded;
+    }
+    &__roomInfo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__infogroup{
+        display: flex;
+    }
 }
+
 .chat{
     width: 65%;
     background-color: $primary-shaded;
+    position: relative;
     &__topbar{
         height: 45px;
         width: 100%;
         border-bottom: 1px solid $primary-dark-shaded;
     }
+    &__user{
+        text-align: center;
+        display: inline-block;
+        margin-top: -$small-spacing;
+    }
+    &__messagecontainer{
+        margin: $small-spacing;
+        display: flex;
+    }
+    &__message{
+        background-color: $primary-color;
+        padding: $small-spacing;
+        margin-left: $small-spacing;
+        display: inline-block;
+        
+
+    }
+    &__timestamp{
+        padding: $small-spacing
+    }
+    &__messageblock{
+        display: inline-flex;
+        flex-direction: column;
+        width: 60%;
+    }
+    &__inputcontainer{
+        position: absolute;
+        bottom: 0;
+    }
+}
+.messageinverted{
+    
+    background-color: $blue;
+}
+.invertedmessage{
+    text-align: right;
+    justify-content: flex-end;
 }
