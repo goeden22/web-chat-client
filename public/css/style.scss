@@ -14,6 +14,12 @@
     
   };
 
+  @mixin shift($property: all, $duration: .3s, $ease: linear){
+	-webkit-transition: $property $duration $ease;
+	-moz-transition: $property $duration $ease;
+	-o-transition: $property $duration $ease;
+	transition: $property $duration $ease;
+}
 $primary_font : 'Montserrat', serif;
 
 
@@ -115,6 +121,7 @@ h1,hr{
        width: 25%;
     }
     &__list, &__input{
+        
         width: 75%;
         float: right;
         outline: none;
@@ -162,6 +169,9 @@ h1,hr{
 .users{
     width: 20%;
     background-color: $primary-color;
+    &__list{
+        margin-top: $small-spacing;
+    }
     &__search{
         height: 45px;
         border-bottom: 1px solid $primary-light-shaded;
@@ -208,6 +218,37 @@ h1,hr{
         display: flex;
     }
 }
+.selectroom{
+    height: 45px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: $secondary-color;
+    @include shift(height, .5s, ease-out);
+    &__arrow{
+        top:0;
+        right: 0;
+        position: absolute;
+        padding: $small-spacing;
+        color: $primary-color;
+    }
+    &__container{
+        height: 180px;
+        display: flex;
+        flex-direction: column;
+    }
+    &__option{
+        height: 100%;
+        box-sizing: border-box;
+        padding: $small-spacing;
+        &:hover{
+            background-color: $secondary-shaded;
+        }
+    }
+}
+.activeselect{
+    height: 180px;
+}
 
 .chat{
     width: 65%;
@@ -246,6 +287,38 @@ h1,hr{
     &__inputcontainer{
         position: absolute;
         bottom: 0;
+        background-color: $primary-color;
+        padding: $min-spacing;
+        width: 60%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+    &__input{
+        padding: $small-spacing;
+        border: none;
+        background-color: $primary-color;
+        @extend .header;
+        @extend .header--subheaderLight;
+        @include placeholder {
+            font-family: $primary_font;
+            font-size: 15px;
+            color: $primary-shaded-darker-text;
+            font-weight: 500;
+        }
+        flex: 4
+
+    }
+    &__icons{
+        padding: $small-spacing;
+        flex: 1
+    }
+    &__icon{
+        width: 25px;
+        height: 25px;
+        margin: $min-spacing;
+        cursor: pointer;
     }
 }
 .messageinverted{

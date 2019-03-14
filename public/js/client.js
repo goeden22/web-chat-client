@@ -1,3 +1,8 @@
+let selectroom = document.getElementById('selectroom')
+selectroom.addEventListener('click', (e) => {
+    selectroom.classList.toggle('activeselect')
+})
+
 let socket = io();
 
 socket.on('connect', () => {

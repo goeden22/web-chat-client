@@ -68,21 +68,39 @@
                 </div>
             </div> 
             <div class="chat__inputcontainer">
-            <input type="text" class="chat__input" placeholder="input message">
-            
-            <img src="" alt="" class="chat__icon">
-            <img src="" alt="" class="chat__icon">
+            <input type="text" class="chat__input" placeholder="Input message . . .">
+            <div class="chat__icons">
+            <img src="./img/svg/paper-plane.svg" alt="" class="chat__icon">
+            <img src="./img/svg/like.svg" alt="" class="chat__icon">
+             </div>
         </div>
         </div>
         <div class="rooms">
             <div class="rooms__topbar">
 
-                <select name="rooms" class="loginform__list header header--secondary" placeholder="select room">
+               <!--<select name="rooms" class="loginform__list header header--secondary" placeholder="select room">
                     <option value="room 1" class="header header--secondary">room1</option>
                     <option value="room 2" class="header header--secondary">room2</option>
                     <option value="room 3" class="header header--secondary">room3</option>
                     <option value="room 4" class="header header--secondary">room4</option>
-                </select>
+                </select> -->
+                <div class="selectroom" id="selectroom">
+                    <div class="selectroom__arrow header header--secondary">v</div>
+                    <div class="selectroom__container">
+                        <div class="selectroom__option">
+                            <h1 class="header header--secondary">Room 1</h1>
+                        </div>
+                        <div class="selectroom__option">
+                            <h1 class="header header--secondary">Room 2</h1>
+                        </div>
+                        <div class="selectroom__option">
+                            <h1 class="header header--secondary">Room 3</h1>
+                        </div>
+                        <div class="selectroom__option">
+                            <h1 class="header header--secondary">Room 4</h1>
+                        </div>
+                    </div>
+                </div>
 
             </div>
             <div class="rooms__roomInfo">
@@ -94,12 +112,13 @@
                 </div>
                 <div class="rooms__infogroup">
                     <h1 class="header header--secondaryShaded sspace">Users:</h1>
-                    <h1 class="header header--secondary">2</h1>
+                    <h1 class="header header--secondary sspace">2</h1>
                 </div>
 
             </div>
         </div>
     </div>
+    <script src="./js/client.js"></script>
 </body>
 
 </html>

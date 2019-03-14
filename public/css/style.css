@@ -24,7 +24,7 @@ h1, hr {
   border: 0;
   margin: 0 auto; }
 
-.header, .loginform__input, .users__searchinput {
+.header, .loginform__input, .users__searchinput, .chat__input {
   font-family: "Montserrat", serif; }
   .header--main {
     font-size: 15px;
@@ -34,7 +34,7 @@ h1, hr {
     font-size: 14px;
     color: #6c737d;
     font-weight: 500; }
-  .header--subheaderLight, .users__searchinput {
+  .header--subheaderLight, .users__searchinput, .chat__input {
     font-size: 15px;
     color: #d1d5da;
     font-weight: 500; }
@@ -118,6 +118,8 @@ h1, hr {
 .users {
   width: 20%;
   background-color: #ffffff; }
+  .users__list {
+    margin-top: 12px; }
   .users__search {
     height: 45px;
     border-bottom: 1px solid #eff2f7;
@@ -165,6 +167,36 @@ h1, hr {
   .rooms__infogroup {
     display: flex; }
 
+.selectroom {
+  height: 45px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #252c33;
+  -webkit-transition: height 0.5s ease-out;
+  -moz-transition: height 0.5s ease-out;
+  -o-transition: height 0.5s ease-out;
+  transition: height 0.5s ease-out; }
+  .selectroom__arrow {
+    top: 0;
+    right: 0;
+    position: absolute;
+    padding: 12px;
+    color: #ffffff; }
+  .selectroom__container {
+    height: 180px;
+    display: flex;
+    flex-direction: column; }
+  .selectroom__option {
+    height: 100%;
+    box-sizing: border-box;
+    padding: 12px; }
+    .selectroom__option:hover {
+      background-color: #4d565f; }
+
+.activeselect {
+  height: 180px; }
+
 .chat {
   width: 65%;
   background-color: #eef0f2;
@@ -193,7 +225,46 @@ h1, hr {
     width: 60%; }
   .chat__inputcontainer {
     position: absolute;
-    bottom: 0; }
+    bottom: 0;
+    background-color: #ffffff;
+    padding: 5px;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+  .chat__input {
+    padding: 12px;
+    border: none;
+    background-color: #ffffff;
+    flex: 4; }
+    .chat__input::-webkit-input-placeholder {
+      font-family: "Montserrat", serif;
+      font-size: 15px;
+      color: #6c737d;
+      font-weight: 500; }
+    .chat__input:-moz-placeholder {
+      font-family: "Montserrat", serif;
+      font-size: 15px;
+      color: #6c737d;
+      font-weight: 500; }
+    .chat__input::-moz-placeholder {
+      font-family: "Montserrat", serif;
+      font-size: 15px;
+      color: #6c737d;
+      font-weight: 500; }
+    .chat__input:-ms-input-placeholder {
+      font-family: "Montserrat", serif;
+      font-size: 15px;
+      color: #6c737d;
+      font-weight: 500; }
+  .chat__icons {
+    padding: 12px;
+    flex: 1; }
+  .chat__icon {
+    width: 25px;
+    height: 25px;
+    margin: 5px;
+    cursor: pointer; }
 
 .messageinverted {
   background-color: #2c85df; }
