@@ -38,7 +38,7 @@
         </div>
         <div class="chat">
             <div class="chat__topbar"></div>
-            <div class="chat__container">
+            <div class="chat__container" id="chatcontainer">
                 <div class="chat__messagecontainer">
                     <div class="chat__user">
                         <img src="./img/avatar.jpg" alt="" class="smallavatar">
@@ -46,11 +46,12 @@
                     </div>
                     <div class="chat__messageblock">
                         <div class="chat__message">
-                            <p class="header header--main">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur, quasi!</p>
+                                <p class="header header--subheader">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur, quasi!</p>
                         </div>
                         <h1 class="header header--subheader chat__timestamp">13:20</h1>
 
                     </div>
+                    
 
                 </div>
                 <div class="chat__messagecontainer invertedmessage">
@@ -68,7 +69,9 @@
                 </div>
             </div> 
             <div class="chat__inputcontainer">
-            <input type="text" class="chat__input" placeholder="Input message . . .">
+                <form id="messageinput">
+            <input id="messagetext" type="text" class="chat__input" placeholder="Input message . . .">
+            </form>
             <div class="chat__icons">
             <img src="./img/svg/paper-plane.svg" alt="" class="chat__icon">
             <img src="./img/svg/like.svg" alt="" class="chat__icon">
@@ -105,7 +108,7 @@
             </div>
             <div class="rooms__roomInfo">
                 <img src="./img/avatar.jpg" alt="" class="largeavatar">
-                <h1 class="header header--secondary sspace">room1</h1>
+                <h1 class="header header--secondary sspace">room 1</h1>
                 <div class="rooms__infogroup">
                     <h1 class="header header--secondaryShaded sspace">Name:</h1>
                     <h1 class="header header--secondary sspace">Room 1</h1>
@@ -118,7 +121,8 @@
             </div>
         </div>
     </div>
-    <script src="./js/client.js"></script>
+    <script src='socket.io/socket.io.js'></script>
+    <script src='js/client.js'></script>
 </body>
 
 </html>

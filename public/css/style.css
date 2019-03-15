@@ -201,6 +201,9 @@ h1, hr {
   width: 65%;
   background-color: #eef0f2;
   position: relative; }
+  .chat__container {
+    height: 80%;
+    overflow: auto; }
   .chat__topbar {
     height: 45px;
     width: 100%;
@@ -236,7 +239,7 @@ h1, hr {
     padding: 12px;
     border: none;
     background-color: #ffffff;
-    flex: 4; }
+    width: 100%; }
     .chat__input::-webkit-input-placeholder {
       font-family: "Montserrat", serif;
       font-size: 15px;
@@ -265,6 +268,9 @@ h1, hr {
     height: 25px;
     margin: 5px;
     cursor: pointer; }
+
+#messageinput {
+  flex: 4; }
 
 .messageinverted {
   background-color: #2c85df; }

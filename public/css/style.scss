@@ -254,6 +254,10 @@ h1,hr{
     width: 65%;
     background-color: $primary-shaded;
     position: relative;
+    &__container{
+        height: 80%;
+        overflow: auto;
+    }
     &__topbar{
         height: 45px;
         width: 100%;
@@ -307,7 +311,8 @@ h1,hr{
             color: $primary-shaded-darker-text;
             font-weight: 500;
         }
-        flex: 4
+        width: 100%;
+    
 
     }
     &__icons{
@@ -320,6 +325,9 @@ h1,hr{
         margin: $min-spacing;
         cursor: pointer;
     }
+}
+#messageinput{
+    flex: 4
 }
 .messageinverted{
     

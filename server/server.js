@@ -21,7 +21,11 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('user has disconnected')
   })
-
+  
+  socket.on('createMessage', (message) =>{
+    console.log('blabla')
+    io.emit('newMessage', {from: message.from, body: message.body, time: new Date().getTime()})
+  })
 })
 
 
