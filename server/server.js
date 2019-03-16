@@ -1,10 +1,11 @@
 //path. join to metoda ktora pozwala nam z relatywnej sciezki stworzyc bezwzgledna sciezke
 const express = require('express');
-const path = require('path')
-const http = require('http')
-const socketIo = require('socket.io')
+const path = require('path');
+const http = require('http');
+const socketIo = require('socket.io');
+const {generateMessage} = require('./utils/utils.js');
 
-const publicPath = path.join(__dirname, '../public')
+const publicPath = path.join(__dirname, '../public');
 const app = express();
 //implementujemy socketa na serwerze
 const server = http.createServer(app);
@@ -24,7 +25,7 @@ io.on('connection', (socket) => {
   
   socket.on('createMessage', (message) =>{
     console.log('blabla')
-    io.emit('newMessage', {from: message.from, body: message.body, time: new Date().getTime()})
+    io.emit('newMessage', generateMessage(message.from,message.body))
   })
 })
 
