@@ -34,3 +34,4 @@ function Chat(container, input){
     }
     this.input.onsubmit = this.handleSubmit.bind(this)
 }
+

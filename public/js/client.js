@@ -1,14 +1,26 @@
 
 let chat = new Chat('chatcontainer', 'messageinput')
-
 let socket = io();
 
+
+
 socket.on('connect', () => {
-    console.log('connected to server')
+    let chatParams = /\?nickname=(.*)&room=(.*)/g.exec(window.location.search.replace(/\+/g,'')) || undefined
+
+                                    //callback as third argument
+    socket.emit('join', {nickname: chatParams[1], room: chatParams[2]}, function(err) {
+           if (err){
+            alert(err)
+            window.location.href = '/'
+           }
+            
+            
+        
+    })
 })
 
 socket.on('disconnect', () => {
-    console.log('connected to server')
+
 })
 socket.on('newMessage', (message) => {
 chat.appendMessage(message)

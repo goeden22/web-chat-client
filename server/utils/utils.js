@@ -7,4 +7,15 @@ let generateMessage = (from,body) => {
         timestamp: moment().valueOf(),
     }
 }
-module.exports = {generateMessage}
+
+
+
+let validateRoom = function(arg){
+    let roomsList = 
+    ['room1','room2','room3','room4']
+
+    return roomsList.some((room) => {
+        return room == arg
+    })
+}
+module.exports = {generateMessage, validateRoom}

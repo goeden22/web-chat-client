@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const socketIo = require('socket.io');
-const {generateMessage} = require('./utils/utils.js');
+const {generateMessage, validateRoom} = require('./utils/utils.js');
 
 const publicPath = path.join(__dirname, '../public');
 const app = express();
@@ -26,6 +26,17 @@ io.on('connection', (socket) => {
   socket.on('createMessage', (message) =>{
     console.log('blabla')
     io.emit('newMessage', generateMessage(message.from,message.body))
+  })
+  socket.on('join', (params, callback) => {
+    let testRegEx = RegExp('^[a-zA-Z0-9]*$', 'g')
+   if(!testRegEx.test(params.nickname) || params.nickname.length < 3){
+      callback("Your nickname must be alfanumeric value and be at least 3 characters long")
+    } else if (!validateRoom(params.room)){
+      callback("Room is invalid")
+    } else{
+      callback();
+    }
+  
   })
 })
 
