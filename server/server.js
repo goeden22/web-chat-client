@@ -34,6 +34,8 @@ io.on('connection', (socket) => {
     } else if (!validateRoom(params.room)){
       callback("Room is invalid")
     } else{
+
+      socket.join(params.room)
       callback();
     }
   
