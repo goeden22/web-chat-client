@@ -1,7 +1,7 @@
 let UserList = function(){
     this.users = [];
     this.addUser = (tempus) => {
-        let user = {id: this.users.length + 1, name: tempus.name, room: tempus.room}
+        let user = {id: tempus.id, name: tempus.name, room: tempus.room}
         this.users.push(user)
         return user
     }
@@ -15,7 +15,7 @@ let UserList = function(){
 
         if(user){
             this.users = this.users.filter(user => {
-                return user.id != id
+                return user.id !== id
             })
         }
         

@@ -4,12 +4,15 @@ const path = require('path');
 const http = require('http');
 const socketIo = require('socket.io');
 const {generateMessage, validateRoom} = require('./utils/utils.js');
+const {UserList} = require('./utils/users.js')
 
 const publicPath = path.join(__dirname, '../public');
 const app = express();
 //implementujemy socketa na serwerze
 const server = http.createServer(app);
 const io = socketIo(server)
+
+let users = new UserList()
 //middleware do uruchamiania na serwerze statycznych plików
 app.use(express.static(publicPath))
 
@@ -19,13 +22,10 @@ io.on('connection', (socket) => {
     console.log('new user connected')
   //socket reprezentuje indywidualne połączenie z konkretnym użytkownikiem, io reprezentuje ogólne połączenie dla wszystkich użytkowników
 
-  socket.on('disconnect', () => {
-    console.log('user has disconnected')
-  })
+  
   
   socket.on('createMessage', (message) =>{
-    console.log('blabla')
-    io.emit('newMessage', generateMessage(message.from,message.body))
+    socket.emit('newMessage', generateMessage(message.from,message.body))
   })
   socket.on('join', (params, callback) => {
     let testRegEx = RegExp('^[a-zA-Z0-9]*$', 'g')
@@ -36,9 +36,21 @@ io.on('connection', (socket) => {
     } else{
 
       socket.join(params.room)
+      users.removeUser(socket.id)
+      users.addUser({id: socket.id, name: params.nickname, room: params.room})
+
+      io.to(params.room).emit('updateUserList', users.getRoomUsers(params.room))
       callback();
     }
   
+  })
+  socket.on('disconnect', () => {
+    let crtUser = users.getUser(socket.id)
+    if(crtUser){
+      users.removeUser(socket.id)
+      io.to(crtUser.room).emit('updateUserList', users.users)
+    }
+    
   })
 })
 
