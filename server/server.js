@@ -27,6 +27,13 @@ io.on('connection', (socket) => {
   socket.on('createMessage', (message) =>{
     socket.emit('newMessage', generateMessage(message.from,message.body))
   })
+  socket.on('changeRoom', () => {
+    let crtUser = users.getUser(socket.id)
+    if(crtUser){
+      users.removeUser(socket.id)
+      io.to(crtUser.room).emit('updateUserList', users.users)
+    }
+  })
   socket.on('join', (params, callback) => {
     let testRegEx = RegExp('^[a-zA-Z0-9]*$', 'g')
    if(!testRegEx.test(params.nickname) || params.nickname.length < 3){

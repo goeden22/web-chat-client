@@ -6,7 +6,6 @@ let socket = io();
 let userListContainer = document.getElementById('usersList')
 let usrUpdates = (userList) => {
  
-    console.log(userList)
    let filteredUser =  userList.map(usr => {
         return `<div class="users__user">
         <img src="./img/avatar.jpg" alt="" class="users__img">
@@ -47,7 +46,37 @@ socket.on('updateUserList', (users) => {
 })
 
 
-let selectroom = document.getElementById('selectroom')
+let RoomSelect = function(id){
+    this.container = document.getElementById(id)
+    this.options = document.getElementById('selectroomContainer')
+    this.options2 = this.container.querySelectorAll('.selectroom__option')
+    this.changeRoom = (e) => {
+        if (!this.container.classList.contains('activeselect')){
+            return false
+        }
+        
+        let newRoom = e.target.getAttribute('name')
+        if(!newRoom){
+            return false
+        }
+        socket.emit('changeRoom')
+        let url = new URL(window.location.href)
+        url.searchParams.set('room', newRoom)
+        window.location.href = url.href
+       
+      console.log(e.target)
+    }
+    this.openList = () => {
+        this.container.classList.toggle('activeselect')
+    }
+    this.container.onclick = this.openList.bind(this)
+    this.options.onclick = this.changeRoom.bind(this)
+   
+}
+let selectroom = new RoomSelect('selectroom')
+
+/*let selectroom = document.getElementById('selectroom')
 selectroom.addEventListener('click', () => {
     selectroom.classList.toggle('activeselect')
-})
+})*/
+
