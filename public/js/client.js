@@ -21,6 +21,8 @@ let usrUpdates = (userList) => {
     userListContainer.innerHTML = filteredUser;
 
 }
+
+let roomInfo = new RoomInfo('roomInfo')
 socket.on('connect', () => {
     let chatParams = /\?nickname=(.*)&room=(.*)/g.exec(window.location.search.replace(/\+/g,'')) || undefined
 
@@ -39,17 +41,43 @@ socket.on('disconnect', () => {
 })
 socket.on('newMessage', (message) => {
 chat.appendMessage(message)
+chat.scroll(350);
 //messagecontainer.innerHTML += generateMessageBlock(message)
 })
 socket.on('updateUserList', (users) => {
     usrUpdates(users)
+    roomInfo.append(users)
+
 })
 
 
 let RoomSelect = function(id){
     this.container = document.getElementById(id)
+    this.activeRoom = ""
+    this.optionList = [{
+        name: 'room1'
+    },
+    {
+        name: 'room2'
+    },
+    {
+        name: 'room3'
+    },
+    {
+        name: 'room4'
+    },]
+    this.optionChoose = this.optionList.map(option => {
+        return  `<div class="selectroom__option">
+        <h1 class="header header--secondary" name="${option.name}">${option.name}</h1>
+    </div>`
+    }).join("");
+
+    this.append = () => {
+        this.options.innerHTML = this.optionChoose
+    }
     this.options = document.getElementById('selectroomContainer')
     this.options2 = this.container.querySelectorAll('.selectroom__option')
+    
     this.changeRoom = (e) => {
         if (!this.container.classList.contains('activeselect')){
             return false
@@ -71,6 +99,7 @@ let RoomSelect = function(id){
     }
     this.container.onclick = this.openList.bind(this)
     this.options.onclick = this.changeRoom.bind(this)
+    this.append()
    
 }
 let selectroom = new RoomSelect('selectroom')

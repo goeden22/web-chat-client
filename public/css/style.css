@@ -173,10 +173,10 @@ h1, hr {
   overflow: hidden;
   cursor: pointer;
   background-color: #252c33;
-  -webkit-transition: height 0.5s ease-out;
-  -moz-transition: height 0.5s ease-out;
-  -o-transition: height 0.5s ease-out;
-  transition: height 0.5s ease-out; }
+  -webkit-transition: height 0.3s ease-out;
+  -moz-transition: height 0.3s ease-out;
+  -o-transition: height 0.3s ease-out;
+  transition: height 0.3s ease-out; }
   .selectroom__arrow {
     top: 0;
     right: 0;
@@ -214,7 +214,11 @@ h1, hr {
     margin-top: -12px; }
   .chat__messagecontainer {
     margin: 12px;
-    display: flex; }
+    display: flex;
+    -webkit-transition: transform 0.3s ease-out;
+    -moz-transition: transform 0.3s ease-out;
+    -o-transition: transform 0.3s ease-out;
+    transition: transform 0.3s ease-out; }
   .chat__message {
     background-color: #ffffff;
     padding: 12px;
@@ -268,6 +272,9 @@ h1, hr {
     height: 25px;
     margin: 5px;
     cursor: pointer; }
+
+.moved {
+  transform: translateX(-25px); }
 
 #messageinput {
   flex: 4; }

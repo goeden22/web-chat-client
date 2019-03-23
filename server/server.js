@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const socketIo = require('socket.io');
-const {generateMessage, validateRoom} = require('./utils/utils.js');
+const {generateMessage, validateRoom, validateNickname} = require('./utils/utils.js');
 const {UserList} = require('./utils/users.js')
 
 const publicPath = path.join(__dirname, '../public');
@@ -24,9 +24,7 @@ io.on('connection', (socket) => {
 
   
   
-  socket.on('createMessage', (message) =>{
-    socket.emit('newMessage', generateMessage(message.from,message.body))
-  })
+  
   socket.on('changeRoom', () => {
     let crtUser = users.getUser(socket.id)
     if(crtUser){
@@ -36,7 +34,7 @@ io.on('connection', (socket) => {
   })
   socket.on('join', (params, callback) => {
     let testRegEx = RegExp('^[a-zA-Z0-9]*$', 'g')
-   if(!testRegEx.test(params.nickname) || params.nickname.length < 3){
+   if(!validateNickname(params.nickname)){
       callback("Your nickname must be alfanumeric value and be at least 3 characters long")
     } else if (!validateRoom(params.room)){
       callback("Room is invalid")
@@ -49,7 +47,15 @@ io.on('connection', (socket) => {
       io.to(params.room).emit('updateUserList', users.getRoomUsers(params.room))
       callback();
     }
-  
+  })
+  socket.on('createMessage', (message) =>{
+    
+    let user = users.getUser(socket.id)
+    if(validateNickname(user.name) && message.body.trim().length > 0){
+      socket.broadcast.to(user.room).emit('newMessage', generateMessage(users.getUser(socket.id).name,message.body, false))
+      socket.emit('newMessage', generateMessage(users.getUser(socket.id).name,message.body, true))
+    }
+    
   })
   socket.on('disconnect', () => {
     let crtUser = users.getUser(socket.id)

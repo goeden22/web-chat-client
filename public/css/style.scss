@@ -224,7 +224,7 @@ h1,hr{
     overflow: hidden;
     cursor: pointer;
     background-color: $secondary-color;
-    @include shift(height, .5s, ease-out);
+    @include shift(height, .3s, ease-out);
     &__arrow{
         top:0;
         right: 0;
@@ -271,6 +271,7 @@ h1,hr{
     &__messagecontainer{
         margin: $small-spacing;
         display: flex;
+        @include shift(transform, .3s, ease-out);
     }
     &__message{
         background-color: $primary-color;
@@ -325,6 +326,9 @@ h1,hr{
         margin: $min-spacing;
         cursor: pointer;
     }
+}
+.moved{
+    transform: translateX(-25px)
 }
 #messageinput{
     flex: 4
