@@ -46,6 +46,8 @@ $large-spacing: 50px;
 $small-spacing: 12px;
 $min-spacing: 5px;
 
+//media
+$break-large: 1400px;
 .sspace{
     padding: $min-spacing;
 }
@@ -166,6 +168,7 @@ h1,hr{
     @include box-shadow( 0px,0px, 15px, rgba(0,0,0,0.1));
     border: 1px solid $primary-shaded;
 }
+
 .users{
     width: 20%;
     background-color: $primary-color;
@@ -340,4 +343,17 @@ h1,hr{
 .invertedmessage{
     text-align: right;
     justify-content: flex-end;
+}
+
+
+@media screen and (max-width: $break-large){
+    .appContainer{
+        width: 90%;
+    }
+    .users{
+        width: 25%;
+    }
+    .chat{
+        width: 60%
+    }
 }

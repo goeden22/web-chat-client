@@ -30,6 +30,7 @@ io.on('connection', (socket) => {
     if(crtUser){
       users.removeUser(socket.id)
       io.to(crtUser.room).emit('updateUserList', users.users)
+      io.to(crtUser.room).emit('updateRoomSelection', crtUser.room)
     }
   })
   socket.on('join', (params, callback) => {
@@ -45,6 +46,7 @@ io.on('connection', (socket) => {
       users.addUser({id: socket.id, name: params.nickname, room: params.room})
 
       io.to(params.room).emit('updateUserList', users.getRoomUsers(params.room))
+      io.to(params.room).emit('updateRoomSelection', params.room)
       callback();
     }
   })

@@ -286,4 +286,14 @@ h1, hr {
   text-align: right;
   justify-content: flex-end; }
 
+@media screen and (max-width: 1400px) {
+  .appContainer {
+    width: 90%; }
+
+  .users {
+    width: 25%; }
+
+  .chat {
+    width: 60%; } }
+
 /*# sourceMappingURL=style.css.map */
