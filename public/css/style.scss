@@ -46,8 +46,12 @@ $large-spacing: 50px;
 $small-spacing: 12px;
 $min-spacing: 5px;
 
-//media
-$break-large: 1400px;
+body{
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
 .sspace{
     padding: $min-spacing;
 }
@@ -161,11 +165,9 @@ h1,hr{
 }
 //chat
 .appContainer{
-    height: 750px;
-    width: 1400px;
-    margin: $extralarge-spacing auto 0 auto;
+    height: 100vh;
+    width: 100%;
     display: flex;
-    @include box-shadow( 0px,0px, 15px, rgba(0,0,0,0.1));
     border: 1px solid $primary-shaded;
 }
 
@@ -203,6 +205,19 @@ h1,hr{
         flex-direction: column;
         justify-content: center;
     }
+    &__mobilebutton{
+        display: none;
+    }
+    &__mobileicon{
+        width: 40px;
+        height: 40px;
+        margin: 0 auto;
+        padding:10px;
+        cursor: pointer;
+        &:hover{
+            background-color: $primary-shaded;
+        }
+    }
 }
 .rooms{
     width: 15%;
@@ -219,6 +234,19 @@ h1,hr{
     }
     &__infogroup{
         display: flex;
+    }
+    &__mobilebutton{
+        display: none;
+    }
+    &__mobileicon{
+        width: 40px;
+        height: 40px;
+        margin: 0 auto;
+        padding:10px;
+        cursor: pointer;
+        &:hover{
+            background-color: $secondary-shaded;
+        }
     }
 }
 .selectroom{
@@ -329,9 +357,15 @@ h1,hr{
         margin: $min-spacing;
         cursor: pointer;
     }
+    &__paragraph{
+        word-wrap: break-word;
+    }
 }
 .moved{
     transform: translateX(-25px)
+}
+.movedinverted{
+    transform: translateX(25px)
 }
 #messageinput{
     flex: 4
@@ -346,10 +380,12 @@ h1,hr{
 }
 
 
+
+
+$break-large: 1400px;
+$break-medium: 1050px;
+$break-small: 600px;
 @media screen and (max-width: $break-large){
-    .appContainer{
-        width: 90%;
-    }
     .users{
         width: 25%;
     }
@@ -357,3 +393,44 @@ h1,hr{
         width: 60%
     }
 }
+@media screen and (max-width: $break-medium){
+    .users{
+        min-width: 60px;
+        max-width: 60px;
+        &__content{
+            display: none;
+        };
+        &__mobilebutton{
+            display: block
+        }
+    }
+    .chat{
+        width: 100%
+    }
+    .rooms{
+        text-align:center;
+        min-width: 60px;
+        max-width: 60px;
+        &__content{
+            display: none;
+        }
+        &__mobilebutton{
+            text-align: center;
+            display: block;
+        }
+    }
+   
+}
+@media screen and (max-width: $break-small){
+
+    .chat{
+        &__inputcontainer{
+            width: 100%;
+            padding: 0;
+        }
+    }
+
+}
+
+
+

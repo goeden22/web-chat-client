@@ -8,11 +8,11 @@ function Chat(container, input){
 
     this.generateMessageBlock = function(message){
         if(message.self){
-            return `<div class="chat__messagecontainer invertedmessage moved">
+            return `<div class="chat__messagecontainer invertedmessage movedinverted">
                     
             <div class="chat__messageblock">
                 <div class="chat__message messageinverted">
-                    <p class="header header--secondary">${message.body}</p>
+                    <p class="header header--secondary chat__paragraph">${message.body}</p>
                 </div>
                 <h1 class="header header--subheader chat__timestamp">${moment(message.time).format('HH:mm:ss')}</h1>
             </div>
@@ -29,7 +29,7 @@ function Chat(container, input){
         </div>
         <div class="chat__messageblock">
             <div class="chat__message">
-                <p class="header header--subheader">${message.body}</p>
+                <p class="header header--subheader chat__paragraph">${message.body}</p>
             </div>
             <h1 class="header header--subheader chat__timestamp">${moment(message.time).format('HH:mm:ss')}</h1>
         </div>
@@ -107,13 +107,15 @@ let RoomSelect = function(id){
     }
     this.sortList = () => {
         this.optionList = this.optionList.sort((a,b) => {
-            if(b.name == this.activeRoom){
-                return 1
+            if(a.name == this.activeRoom){
+                return -1
             } else{
                 return 0
             }
         })
         this.append();
+       
+        
     }
     this.options = document.getElementById('selectroomContainer')
     this.options2 = this.container.querySelectorAll('.selectroom__option')
