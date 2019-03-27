@@ -106,12 +106,10 @@ let RoomSelect = function(id){
         this.options.innerHTML = this.optionChoose();
     }
     this.sortList = () => {
-        this.optionList = this.optionList.sort((a,b) => {
-            if(a.name == this.activeRoom){
-                return -1
-            } else{
-                return 0
-            }
+        this.optionList = this.optionList.sort((x,y) => {
+        
+                 return x.name == this.activeRoom ? -1 : y.name == this.activeRoom ? 1 : 0; 
+            
         })
         this.append();
        
@@ -129,17 +127,85 @@ let RoomSelect = function(id){
         if(!newRoom){
             return false
         }
-        socket.emit('changeRoom')
-        let url = new URL(window.location.href)
-        url.searchParams.set('room', newRoom)
-        window.location.href = url.href
+        mainAnim.on();
+        setTimeout(function(){
+            socket.emit('changeRoom');
+            let url = new URL(window.location.href);
+            url.searchParams.set('room', newRoom);
+            window.location.href = url.href;
+        }, 400)
+
+        
        
     }
     this.openList = () => {
         this.container.classList.toggle('activeselect')
     }
-    this.container.onclick = this.openList.bind(this)
-    this.options.onclick = this.changeRoom.bind(this)
+    this.container.onclick = this.openList.bind(this);
+    this.options.onclick = this.changeRoom.bind(this);
     this.append()
    
+}
+
+let animForeground = function(id){
+    this.foreground = document.getElementById(id);
+    this.on = () => {
+       
+        let foreground = this.foreground
+      foreground.classList.toggle('anim__on')
+    }
+    this.off = () => {
+        let foreground = this.foreground;
+        setTimeout(function(){
+            foreground.classList.toggle('anim__on')
+        }, 750)
+    }
+}
+let MobileButtons = function(rooms,users, roomsButton, usersButton){
+    this.roomsContainer = document.getElementById(rooms);
+    this.usersContainer = document.getElementById(users);
+    this.roomsButton = document.getElementById(roomsButton);
+    this.usersButton = document.getElementById(usersButton)
+
+    this.roomsButton.onclick = () => {
+        this.roomsContainer.classList.toggle('mobile__active')
+        this.roomsContainer.querySelector('.rooms__content').classList.toggle('visibleContent')
+    }
+    this.usersButton.onclick = () => {
+        this.usersContainer.classList.toggle('mobile__active')
+        this.usersContainer.querySelector('.users__content').classList.toggle('visibleContent')
+    }
+}
+let UsersList = function(id,id2){
+    this.container = document.getElementById(id);
+    this.searchUser = document.getElementById(id2)
+    this.usrList = []
+    this.domList = (list) => {
+        return list.map(usr => {
+            return `<div class="users__user">
+            <img src="./img/avatar.jpg" alt="" class="users__img">
+            <div class="users__description">
+                <h1 class="header header--main">${usr.name}</h1>
+                <h1 class="header header--subheader">Last message:
+                    <span class="header header--main"> 5min</span> ago</h1>
+            </div>
+        </div>
+        <hr class="lightseparator">`
+        }).join('') || ""
+    }
+    this.updateUsers = (users) => {
+        this.usrList = users
+    }
+    this.append = (list) => {
+        
+        this.container.innerHTML = this.domList(list);
+    } 
+    this.usrSearch = (string) => {
+        this.append(this.usrList.filter(usr => {
+            return usr.name.includes(string)
+        }))
+    }
+    this.searchUser.onkeyup = (e) => {
+       this.usrSearch(e.target.value)
+    }
 }

@@ -174,6 +174,7 @@ h1,hr{
 .users{
     width: 20%;
     background-color: $primary-color;
+    @include shift(transform, .4s, ease-out);
     &__list{
         margin-top: $small-spacing;
     }
@@ -181,6 +182,7 @@ h1,hr{
         height: 45px;
         border-bottom: 1px solid $primary-light-shaded;
         display: flex;
+       
     }
     &__user{
         display: flex;
@@ -207,6 +209,10 @@ h1,hr{
     }
     &__mobilebutton{
         display: none;
+        z-index:11;
+        position: absolute;
+        top:0;
+        left: 0;
     }
     &__mobileicon{
         width: 40px;
@@ -214,9 +220,8 @@ h1,hr{
         margin: 0 auto;
         padding:10px;
         cursor: pointer;
-        &:hover{
-            background-color: $primary-shaded;
-        }
+            background-color: $primary-color;
+    
     }
 }
 .rooms{
@@ -237,6 +242,10 @@ h1,hr{
     }
     &__mobilebutton{
         display: none;
+        z-index: 11;
+        position: absolute;
+        top: 0;
+        right: 0;
     }
     &__mobileicon{
         width: 40px;
@@ -244,9 +253,9 @@ h1,hr{
         margin: 0 auto;
         padding:10px;
         cursor: pointer;
-        &:hover{
             background-color: $secondary-shaded;
-        }
+           
+        
     }
 }
 .selectroom{
@@ -283,11 +292,13 @@ h1,hr{
 
 .chat{
     width: 65%;
+    overflow-x:hidden;
     background-color: $primary-shaded;
     position: relative;
     &__container{
         height: 80%;
         overflow: auto;
+        overflow-x:hidden;
     }
     &__topbar{
         height: 45px;
@@ -329,6 +340,7 @@ h1,hr{
         display: flex;
         align-items: center;
         justify-content: space-between;
+        z-index: 10;
 
     }
     &__input{
@@ -379,12 +391,27 @@ h1,hr{
     justify-content: flex-end;
 }
 
+.anim__foreground{
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    left: 0;
+    top:0;
+    transform: translateX(0);
+    z-index:999;
+    background-color: $secondary-color;
+    
+    @include shift(transform, .4s, ease-out);
+}
+.anim__on{
+    transform: translateX(-100%);
+}
 
 
 
 $break-large: 1400px;
 $break-medium: 1050px;
-$break-small: 600px;
+$break-small: 620px;
 @media screen and (max-width: $break-large){
     .users{
         width: 25%;
@@ -393,31 +420,52 @@ $break-small: 600px;
         width: 60%
     }
 }
-@media screen and (max-width: $break-medium){
+@media screen and (max-width: $break-small){
     .users{
-        min-width: 60px;
-        max-width: 60px;
+        width: 100vw;
+        max-width: 100vw;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        height: 100vh;
+        transform: translateX(-100%);
         &__content{
             display: none;
         };
         &__mobilebutton{
+            text-align: left;
             display: block
+        }
+        &__search{
+            margin-left: 65px;
         }
     }
     .chat{
-        width: 100%
+        width: 100%;
+        &__container{
+            padding-top: $small-spacing;
+        }
     }
     .rooms{
-        text-align:center;
-        min-width: 60px;
-        max-width: 60px;
+        width: 100vw;
+        max-width: 100vw;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 10;
+        height: 100vh;
+        transform: translateX(100%);
         &__content{
             display: none;
         }
         &__mobilebutton{
-            text-align: center;
+            text-align: right;
             display: block;
         }
+    }
+    .selectroom{
+        text-align: center;
     }
    
 }
@@ -432,5 +480,11 @@ $break-small: 600px;
 
 }
 
-
-
+.mobile__active{
+transform: translateX(0)
+}
+.visibleContent{
+    display: block;
+    
+    
+}

@@ -10,12 +10,14 @@
 </head>
 
 <body>
+    <div class="anim__foreground" id="animForeground"></div>
     <div class="appContainer">
-        <div class="users">
-            <div class="users__mobilebutton"><img src="./img/svg/users.svg" alt="" class="users__mobileicon"></div>
+            <div class="users__mobilebutton" id="usersbutton"><img src="./img/svg/users.svg" alt="" class="users__mobileicon"></div>
+        <div class="users" id="userscontainer">
+            
             <div class="users__content">
             <div class="users__search">
-                <input type="text" class="users__searchinput" placeholder="Search user: ">
+                <input type="text" class="users__searchinput" placeholder="Search user: " id="usrSearch">
             </div>
 
             <div class="users__list" id="usersList">
@@ -55,8 +57,9 @@
              </div>
         </div>
         </div>
-        <div class="rooms">
-            <div class="rooms__mobilebutton"><img src="./img/svg/rooms.svg" alt="" class="rooms__mobileicon"></div>
+        <div class="rooms__mobilebutton" id="roomsbutton"><img src="./img/svg/rooms.svg" alt="" class="rooms__mobileicon"></div>
+        <div class="rooms" id="roomscontainer">
+            
             <div class="rooms__content">
             <div class="rooms__topbar">
 

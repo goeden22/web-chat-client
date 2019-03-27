@@ -118,7 +118,11 @@ h1, hr {
 
 .users {
   width: 20%;
-  background-color: #ffffff; }
+  background-color: #ffffff;
+  -webkit-transition: transform 0.4s ease-out;
+  -moz-transition: transform 0.4s ease-out;
+  -o-transition: transform 0.4s ease-out;
+  transition: transform 0.4s ease-out; }
   .users__list {
     margin-top: 12px; }
   .users__search {
@@ -155,15 +159,18 @@ h1, hr {
     flex-direction: column;
     justify-content: center; }
   .users__mobilebutton {
-    display: none; }
+    display: none;
+    z-index: 11;
+    position: absolute;
+    top: 0;
+    left: 0; }
   .users__mobileicon {
     width: 40px;
     height: 40px;
     margin: 0 auto;
     padding: 10px;
-    cursor: pointer; }
-    .users__mobileicon:hover {
-      background-color: #eef0f2; }
+    cursor: pointer;
+    background-color: #ffffff; }
 
 .rooms {
   width: 15%;
@@ -178,15 +185,18 @@ h1, hr {
   .rooms__infogroup {
     display: flex; }
   .rooms__mobilebutton {
-    display: none; }
+    display: none;
+    z-index: 11;
+    position: absolute;
+    top: 0;
+    right: 0; }
   .rooms__mobileicon {
     width: 40px;
     height: 40px;
     margin: 0 auto;
     padding: 10px;
-    cursor: pointer; }
-    .rooms__mobileicon:hover {
-      background-color: #4d565f; }
+    cursor: pointer;
+    background-color: #4d565f; }
 
 .selectroom {
   height: 45px;
@@ -220,11 +230,13 @@ h1, hr {
 
 .chat {
   width: 65%;
+  overflow-x: hidden;
   background-color: #eef0f2;
   position: relative; }
   .chat__container {
     height: 80%;
-    overflow: auto; }
+    overflow: auto;
+    overflow-x: hidden; }
   .chat__topbar {
     height: 45px;
     width: 100%;
@@ -259,7 +271,8 @@ h1, hr {
     width: 60%;
     display: flex;
     align-items: center;
-    justify-content: space-between; }
+    justify-content: space-between;
+    z-index: 10; }
   .chat__input {
     padding: 12px;
     border: none;
@@ -312,36 +325,77 @@ h1, hr {
   text-align: right;
   justify-content: flex-end; }
 
+.anim__foreground {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateX(0);
+  z-index: 999;
+  background-color: #252c33;
+  -webkit-transition: transform 0.4s ease-out;
+  -moz-transition: transform 0.4s ease-out;
+  -o-transition: transform 0.4s ease-out;
+  transition: transform 0.4s ease-out; }
+
+.anim__on {
+  transform: translateX(-100%); }
+
 @media screen and (max-width: 1400px) {
   .users {
     width: 25%; }
 
   .chat {
     width: 60%; } }
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 620px) {
   .users {
-    min-width: 60px;
-    max-width: 60px; }
+    width: 100vw;
+    max-width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    height: 100vh;
+    transform: translateX(-100%); }
     .users__content {
       display: none; }
     .users__mobilebutton {
+      text-align: left;
       display: block; }
+    .users__search {
+      margin-left: 65px; }
 
   .chat {
     width: 100%; }
+    .chat__container {
+      padding-top: 12px; }
 
   .rooms {
-    text-align: center;
-    min-width: 60px;
-    max-width: 60px; }
+    width: 100vw;
+    max-width: 100vw;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    height: 100vh;
+    transform: translateX(100%); }
     .rooms__content {
       display: none; }
     .rooms__mobilebutton {
-      text-align: center;
-      display: block; } }
-@media screen and (max-width: 600px) {
+      text-align: right;
+      display: block; }
+
+  .selectroom {
+    text-align: center; } }
+@media screen and (max-width: 620px) {
   .chat__inputcontainer {
     width: 100%;
     padding: 0; } }
+.mobile__active {
+  transform: translateX(0); }
+
+.visibleContent {
+  display: block; }
 
 /*# sourceMappingURL=style.css.map */

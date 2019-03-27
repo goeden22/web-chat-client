@@ -3,27 +3,11 @@ let chat = new Chat('chatcontainer', 'messageinput')
 let socket = io();
 
 
-let userListContainer = document.getElementById('usersList')
-let usrUpdates = (userList) => {
- 
-   let filteredUser =  userList.map(usr => {
-        return `<div class="users__user">
-        <img src="./img/avatar.jpg" alt="" class="users__img">
-        <div class="users__description">
-            <h1 class="header header--main">${usr.name}</h1>
-            <h1 class="header header--subheader">Last message:
-                <span class="header header--main"> 5min</span> ago</h1>
-        </div>
-    </div>
-    <hr class="lightseparator">`
-    }).join('') || ""
 
-    userListContainer.innerHTML = filteredUser;
-
-}
-
+let usersList = new UsersList('usersList', 'usrSearch')
 let roomInfo = new RoomInfo('roomInfo')
 socket.on('connect', () => {
+   
     let chatParams = /\?nickname=(.*)&room=(.*)/g.exec(window.location.search.replace(/\+/g,'')) || undefined
 
                                     //callback as third argument
@@ -34,6 +18,7 @@ socket.on('connect', () => {
            }
         
     })
+    mainAnim.off();
 })
 
 socket.on('disconnect', () => {
@@ -45,7 +30,8 @@ chat.scroll(350);
 //messagecontainer.innerHTML += generateMessageBlock(message)
 })
 socket.on('updateUserList', (users) => {
-    usrUpdates(users)
+    usersList.updateUsers(users)
+    usersList.append(usersList.usrList);
     roomInfo.append(users)
 
 })
@@ -63,3 +49,5 @@ selectroom.addEventListener('click', () => {
     selectroom.classList.toggle('activeselect')
 })*/
 
+let mainAnim = new animForeground('animForeground')
+let mobileFunctions = new MobileButtons('roomscontainer','userscontainer','roomsbutton','usersbutton')
