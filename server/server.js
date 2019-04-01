@@ -5,6 +5,8 @@ const http = require('http');
 const socketIo = require('socket.io');
 const {generateMessage, validateRoom, validateNickname} = require('./utils/utils.js');
 const {UserList} = require('./utils/users.js')
+const moment = require('moment')
+
 
 const publicPath = path.join(__dirname, '../public');
 const app = express();
@@ -53,9 +55,12 @@ io.on('connection', (socket) => {
   socket.on('createMessage', (message) =>{
     
     let user = users.getUser(socket.id)
+    console.log(user.name)
+    io.to(user.room).emit('updateUserList', {time: moment().valueOf(), user: user.name})
     if(validateNickname(user.name) && message.body.trim().length > 0){
       socket.broadcast.to(user.room).emit('newMessage', generateMessage(users.getUser(socket.id).name,message.body, false))
       socket.emit('newMessage', generateMessage(users.getUser(socket.id).name,message.body, true))
+      
     }
     
   })

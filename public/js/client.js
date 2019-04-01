@@ -30,16 +30,28 @@ chat.scroll(350);
 //messagecontainer.innerHTML += generateMessageBlock(message)
 })
 socket.on('updateUserList', (users) => {
-    usersList.updateUsers(users)
-    usersList.append(usersList.usrList);
-    roomInfo.append(users)
+   if (users.time){
+        usersList.setTime(users.time, users.user)
+    } else if (!users.time){
+        console.log(users)
+        usersList.updateUsers(users)
+        usersList.append(usersList.usrList);
+        roomInfo.append(users)
+    }
+   
+    
 
 })
 socket.on('updateRoomSelection', (room) => {
     selectroom.activeRoom = room;
     selectroom.sortList()
 })
+setInterval(function(){
+if (usersList.usrList){
+    usersList.append(usersList.usrList)
+}
 
+}, 5000);
 
 
 let selectroom = new RoomSelect('selectroom')

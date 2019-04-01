@@ -45,13 +45,12 @@ function Chat(container, input){
       setTimeout(function(){
         messages[messages.length -1].style.transform = "translateX(0)"
       },50)
-      
     }
 
     this.handleSubmit = (e) => {
         e.preventDefault();
         let messageText = messageinput.querySelector('#messagetext')
-        socket.emit('createMessage', {from: "Johnny", body: messageText.value})
+        socket.emit('createMessage', { body: messageText.value})
         messageText.value = ""
         //this.scroll();
     }
@@ -182,12 +181,13 @@ let UsersList = function(id,id2){
     this.usrList = []
     this.domList = (list) => {
         return list.map(usr => {
+            let time = usr.time ? timeago.format(usr.time) : "none"
             return `<div class="users__user">
             <img src="./img/avatar.jpg" alt="" class="users__img">
             <div class="users__description">
                 <h1 class="header header--main">${usr.name}</h1>
                 <h1 class="header header--subheader">Last message:
-                    <span class="header header--main"> 5min</span> ago</h1>
+                    <span class="header header--main">${time}</span></h1>
             </div>
         </div>
         <hr class="lightseparator">`
@@ -196,8 +196,17 @@ let UsersList = function(id,id2){
     this.updateUsers = (users) => {
         this.usrList = users
     }
+    this.setTime = (time,user) => {
+        let tempList = this.usrList.map(usr => {
+            if(usr.name == user){
+                usr.time = time;
+            }
+            return usr
+        })
+        this.updateUsers(tempList);
+        this.append(this.usrList)
+    }
     this.append = (list) => {
-        
         this.container.innerHTML = this.domList(list);
     } 
     this.usrSearch = (string) => {
