@@ -9,7 +9,7 @@ describe('UserList', () => {
         userList.users = [{
             id:1,
             name:"tommy",
-            room: 'room1'
+            room: 'room1',
         },
         {
             id:2,
