@@ -46,9 +46,10 @@ $large-spacing: 50px;
 $small-spacing: 12px;
 $min-spacing: 5px;
 
+
+
 body{
     height: 100vh;
-    overflow: hidden;
     margin: 0;
 }
 
@@ -108,23 +109,61 @@ h1,hr{
         font-weight: 500;
     }
 }
+.loader{
+    height: 100vh;
+    width: 100vw;
+    background-color:$secondary-light-shaded;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    display: none;
+    position: fixed;
+    z-index: 999;
 
+    &__container{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__anim{
+       
+        padding: 15px;
+        width: 70px;
+        height: 70px;
+    }
+}
 .loginform{
-    border: 1px solid $primary-shaded;
-    width: 500px;
-    margin: $extralarge-spacing auto 0 auto;
-    @include box-shadow( 0px,0px, 15px, rgba(0,0,0,0.1));
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:$secondary-light-shaded;
+    &__container{
+width: 500px;
+box-sizing: border-box;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+padding: 20px;
+    }
     &__header{
-        padding: $medium-spacing;
+        padding: 15px 0 50px 15px;
+        color: $secondary-text;
+        font-size: 19px;
+        align-self: flex-start;
     }
     &__form{
         display: flex;
         width: 75%;
-        margin: $extralarge-spacing auto;
+        
         flex-direction: column;
     }
     &__label{
        width: 25%;
+       color: $secondary-text;
     }
     &__list, &__input{
         
@@ -138,9 +177,13 @@ h1,hr{
         &__input{
             @extend .header;
         @extend .header--subheader;
+        padding: 2px;
+        font-size: 13px;
+        color: black;
         @include placeholder {
+            
             font-family: $primary_font;
-            font-size: 15px;
+            font-size: 13px;
             color: $primary-shaded-darker-text;
             font-weight: 500;
         }
@@ -148,19 +191,41 @@ h1,hr{
         }
         &__list{
             border: 1px solid $primary-light-shaded;
+            padding: 2px;
+            font-size: 13px;
+            color: black;
         }
     &__group{
         margin-bottom: $medium-spacing;
     }
     &__btn{
         float: right;
-        background-color: $secondary-color;
+        background-color: white;
+        color: black;
+       width: initial;
         border: none;
         padding: $min-spacing $medium-spacing;
         cursor: pointer;
         &:hover{
             background-color: $secondary-shaded
         }
+    }
+    &__avatarList{
+        border: 1px solid $primary-shaded;
+        padding: 5px;
+        margin-top: 10px;
+        text-align: center
+    }
+    &__avatar{
+        @extend .users__img;
+        padding: 5px;
+        height: 70px;
+        width: 70px;
+        cursor: pointer;
+        opacity: .65
+    }
+    &--active{
+        opacity: 1;
     }
 }
 //chat
@@ -169,6 +234,7 @@ h1,hr{
     width: 100%;
     display: flex;
     border: 1px solid $primary-shaded;
+    overflow: hidden;
 }
 
 .users{
@@ -215,8 +281,8 @@ h1,hr{
         left: 0;
     }
     &__mobileicon{
-        width: 40px;
-        height: 40px;
+        width: 25px;
+        height: 25px;
         margin: 0 auto;
         padding:10px;
         cursor: pointer;
@@ -227,7 +293,7 @@ h1,hr{
 .rooms{
     width: 15%;
     background-color: $secondary-color;
-
+    @include shift(transform, .4s, ease-out);
     &__topbar{
         height: 45px;
         border-bottom: 1px solid $secondary-light-shaded;
@@ -248,8 +314,8 @@ h1,hr{
         right: 0;
     }
     &__mobileicon{
-        width: 40px;
-        height: 40px;
+        width: 25px;
+        height: 25px;
         margin: 0 auto;
         padding:10px;
         cursor: pointer;
@@ -421,6 +487,24 @@ $break-small: 620px;
     }
 }
 @media screen and (max-width: $break-small){
+    .loginform{
+        height: initial;
+        
+        &__avatar{
+            width: 40%;
+            height: auto;
+        }
+        &__container{}
+        &__group{
+            display: flex;
+            flex-direction: column
+        }
+        &__input, &__list{
+            margin-top: 5px;
+            width: 100%
+        }
+    }
+    
     .users{
         width: 100vw;
         max-width: 100vw;
@@ -475,6 +559,7 @@ $break-small: 620px;
         &__inputcontainer{
             width: 100%;
             padding: 0;
+            position: fixed;
         }
     }
 

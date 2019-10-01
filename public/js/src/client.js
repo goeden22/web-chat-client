@@ -11,7 +11,8 @@ socket.on('connect', () => {
     let chatParams = /\?nickname=(.*)&room=(.*)/g.exec(window.location.search.replace(/\+/g,'')) || undefined
 
                                     //callback as third argument
-    socket.emit('join', {nickname: chatParams[1], room: chatParams[2]}, function(err) {
+                                    
+    socket.emit('join', {nickname: chatParams[1], room: chatParams[2], avatar: localStorage.getItem('avatar') || 1}, function(err) {
            if (err){
             alert(err)
             window.location.href = '/'
@@ -30,6 +31,7 @@ chat.scroll(350);
 //messagecontainer.innerHTML += generateMessageBlock(message)
 })
 socket.on('updateUserList', (users) => {
+    console.log(users)
    if (users.time){
         usersList.setTime(users.time, users.user)
     } else if (!users.time){

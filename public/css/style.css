@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700");
 body {
   height: 100vh;
-  overflow: hidden;
   margin: 0; }
 
 .sspace {
@@ -10,7 +9,7 @@ body {
 h1, hr {
   margin: 0; }
 
-.smallavatar, .users__img {
+.smallavatar, .users__img, .loginform__avatar {
   height: 50px;
   width: 50px;
   border-radius: 100%;
@@ -52,22 +51,53 @@ h1, hr {
     color: #4d565f;
     font-weight: 500; }
 
+.loader {
+  height: 100vh;
+  width: 100vw;
+  background-color: #2e343b;
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  display: none;
+  position: fixed;
+  z-index: 999; }
+  .loader__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center; }
+  .loader__anim {
+    padding: 15px;
+    width: 70px;
+    height: 70px; }
+
 .loginform {
-  border: 1px solid #eef0f2;
-  width: 500px;
-  margin: 100px auto 0 auto;
-  -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); }
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2e343b; }
+  .loginform__container {
+    width: 500px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px; }
   .loginform__header {
-    padding: 30px; }
+    padding: 15px 0 50px 15px;
+    color: #ffffff;
+    font-size: 19px;
+    align-self: flex-start; }
   .loginform__form {
     display: flex;
     width: 75%;
-    margin: 100px auto;
     flex-direction: column; }
   .loginform__label {
-    width: 25%; }
+    width: 25%;
+    color: #ffffff; }
   .loginform__list, .loginform__input {
     width: 70%;
     float: right;
@@ -76,45 +106,67 @@ h1, hr {
     border: 0;
     box-sizing: border-box; }
   .loginform__input {
+    padding: 2px;
+    font-size: 13px;
+    color: black;
     border: 1px solid #eff2f7; }
     .loginform__input::-webkit-input-placeholder {
       font-family: "Montserrat", serif;
-      font-size: 15px;
+      font-size: 13px;
       color: #6c737d;
       font-weight: 500; }
     .loginform__input:-moz-placeholder {
       font-family: "Montserrat", serif;
-      font-size: 15px;
+      font-size: 13px;
       color: #6c737d;
       font-weight: 500; }
     .loginform__input::-moz-placeholder {
       font-family: "Montserrat", serif;
-      font-size: 15px;
+      font-size: 13px;
       color: #6c737d;
       font-weight: 500; }
     .loginform__input:-ms-input-placeholder {
       font-family: "Montserrat", serif;
-      font-size: 15px;
+      font-size: 13px;
       color: #6c737d;
       font-weight: 500; }
   .loginform__list {
-    border: 1px solid #eff2f7; }
+    border: 1px solid #eff2f7;
+    padding: 2px;
+    font-size: 13px;
+    color: black; }
   .loginform__group {
     margin-bottom: 30px; }
   .loginform__btn {
     float: right;
-    background-color: #252c33;
+    background-color: white;
+    color: black;
+    width: initial;
     border: none;
     padding: 5px 30px;
     cursor: pointer; }
     .loginform__btn:hover {
       background-color: #4d565f; }
+  .loginform__avatarList {
+    border: 1px solid #eef0f2;
+    padding: 5px;
+    margin-top: 10px;
+    text-align: center; }
+  .loginform__avatar {
+    padding: 5px;
+    height: 70px;
+    width: 70px;
+    cursor: pointer;
+    opacity: 0.65; }
+  .loginform--active {
+    opacity: 1; }
 
 .appContainer {
   height: 100vh;
   width: 100%;
   display: flex;
-  border: 1px solid #eef0f2; }
+  border: 1px solid #eef0f2;
+  overflow: hidden; }
 
 .users {
   width: 20%;
@@ -165,8 +217,8 @@ h1, hr {
     top: 0;
     left: 0; }
   .users__mobileicon {
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
     margin: 0 auto;
     padding: 10px;
     cursor: pointer;
@@ -174,7 +226,11 @@ h1, hr {
 
 .rooms {
   width: 15%;
-  background-color: #252c33; }
+  background-color: #252c33;
+  -webkit-transition: transform 0.4s ease-out;
+  -moz-transition: transform 0.4s ease-out;
+  -o-transition: transform 0.4s ease-out;
+  transition: transform 0.4s ease-out; }
   .rooms__topbar {
     height: 45px;
     border-bottom: 1px solid #2e343b; }
@@ -191,8 +247,8 @@ h1, hr {
     top: 0;
     right: 0; }
   .rooms__mobileicon {
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
     margin: 0 auto;
     padding: 10px;
     cursor: pointer;
@@ -349,6 +405,18 @@ h1, hr {
   .chat {
     width: 60%; } }
 @media screen and (max-width: 620px) {
+  .loginform {
+    height: initial; }
+    .loginform__avatar {
+      width: 40%;
+      height: auto; }
+    .loginform__group {
+      display: flex;
+      flex-direction: column; }
+    .loginform__input, .loginform__list {
+      margin-top: 5px;
+      width: 100%; }
+
   .users {
     width: 100vw;
     max-width: 100vw;
@@ -391,7 +459,8 @@ h1, hr {
 @media screen and (max-width: 620px) {
   .chat__inputcontainer {
     width: 100%;
-    padding: 0; } }
+    padding: 0;
+    position: fixed; } }
 .mobile__active {
   transform: translateX(0); }
 

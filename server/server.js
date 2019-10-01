@@ -45,7 +45,7 @@ io.on('connection', (socket) => {
 
       socket.join(params.room)
       users.removeUser(socket.id)
-      users.addUser({id: socket.id, name: params.nickname, room: params.room})
+      users.addUser({id: socket.id, name: params.nickname, room: params.room, avatar:params.avatar})
 
       io.to(params.room).emit('updateUserList', users.getRoomUsers(params.room))
       io.to(params.room).emit('updateRoomSelection', params.room)
@@ -56,7 +56,7 @@ io.on('connection', (socket) => {
     
     let user = users.getUser(socket.id)
     console.log(user.name)
-    io.to(user.room).emit('updateUserList', {time: moment().valueOf(), user: user.name})
+    io.to(user.room).emit('updateUserList', {time: moment().valueOf(), user: user.name, avatar: user.avatar})
     if(validateNickname(user.name) && message.body.trim().length > 0){
       socket.broadcast.to(user.room).emit('newMessage', generateMessage(users.getUser(socket.id).name,message.body, false))
       socket.emit('newMessage', generateMessage(users.getUser(socket.id).name,message.body, true))

@@ -1,7 +1,7 @@
 let UserList = function(){
     this.users = [];
     this.addUser = (tempus) => {
-        let user = {id: tempus.id, name: tempus.name, room: tempus.room, lastMessage: 0}
+        let user = {id: tempus.id, name: tempus.name, room: tempus.room, avatar:tempus.avatar, lastMessage: 0}
         this.users.push(user)
         return user
     }

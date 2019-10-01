@@ -187,7 +187,7 @@ let UsersList = function(id,id2){
         return list.map(usr => {
             let time = usr.time ? timeago.format(usr.time) : "none"
             return `<div class="users__user">
-            <img src="./img/avatar.jpg" alt="" class="users__img">
+            <img src="./img/avatar${usr.avatar}.jpg" alt="" class="users__img">
             <div class="users__description">
                 <h1 class="header header--main">${usr.name}</h1>
                 <h1 class="header header--subheader">Last message:
