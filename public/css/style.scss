@@ -49,8 +49,8 @@ $min-spacing: 5px;
 
 
 body{
-    height: 100vh;
     margin: 0;
+    overflow: hidden;
 }
 
 .sspace{
@@ -235,6 +235,7 @@ padding: 20px;
     display: flex;
     border: 1px solid $primary-shaded;
     overflow: hidden;
+    max-height: 100vh;
 }
 
 .users{
