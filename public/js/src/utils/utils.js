@@ -165,15 +165,9 @@ let AnimForeground = function(id){
     }
 }
 let MobileButtons = function(rooms,users, roomsButton, usersButton){
-    this.roomsContainer = document.getElementById(rooms);
     this.usersContainer = document.getElementById(users);
-    this.roomsButton = document.getElementById(roomsButton);
     this.usersButton = document.getElementById(usersButton)
 
-    this.roomsButton.onclick = () => {
-        this.roomsContainer.classList.toggle('mobile__active')
-        this.roomsContainer.querySelector('.rooms__content').classList.toggle('visibleContent')
-    }
     this.usersButton.onclick = () => {
         this.usersContainer.classList.toggle('mobile__active')
         this.usersContainer.querySelector('.users__content').classList.toggle('visibleContent')

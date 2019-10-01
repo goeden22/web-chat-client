@@ -166,7 +166,8 @@ h1, hr {
   display: flex;
   border: 1px solid #eef0f2;
   overflow: hidden;
-  max-height: 100vh; }
+  max-height: 100vh;
+  position: relative; }
 
 .users {
   width: 20%;
@@ -442,15 +443,13 @@ h1, hr {
   .rooms {
     width: 100vw;
     max-width: 100vw;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     z-index: 10; }
-    .rooms__content {
-      display: none; }
     .rooms__mobilebutton {
       text-align: right;
-      display: block; }
+      display: none; }
     .rooms__roomInfo {
       display: none; }
 
