@@ -50,7 +50,6 @@ $min-spacing: 5px;
 
 body{
     margin: 0;
-    overflow: hidden;
 }
 
 .sspace{
@@ -539,14 +538,15 @@ $break-small: 620px;
         top: 0;
         right: 0;
         z-index: 10;
-        height: 100vh;
-        transform: translateX(100%);
         &__content{
             display: none;
         }
         &__mobilebutton{
             text-align: right;
             display: block;
+        }
+        &__roomInfo{
+            display: none;
         }
     }
     .selectroom{
