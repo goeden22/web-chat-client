@@ -57,9 +57,15 @@ h1, hr {
   display: flex;
   justify-items: center;
   justify-content: center;
-  display: none;
+  -webkit-transition: opacity 1s 2s ease-out;
+  -moz-transition: opacity 1s 2s ease-out;
+  -o-transition: opacity 1s 2s ease-out;
+  transition: opacity 1s 2s ease-out;
+  opacity: 1;
   position: fixed;
   z-index: 999; }
+  .loader--transparent {
+    opacity: 0; }
   .loader__container {
     display: flex;
     justify-content: center;
@@ -69,6 +75,9 @@ h1, hr {
     padding: 15px;
     width: 70px;
     height: 70px; }
+
+.erase {
+  display: none; }
 
 .loginform {
   height: 100vh;
@@ -373,7 +382,7 @@ h1, hr {
   transform: translateX(25px); }
 
 #messageinput {
-  flex: 4; }
+  width: 100%; }
 
 .messageinverted {
   background-color: #2c85df; }
@@ -439,6 +448,10 @@ h1, hr {
     width: 100%; }
     .chat__container {
       padding-top: 12px; }
+    .chat__paragraph {
+      margin: 5px; }
+    .chat__message {
+      padding: 6px 12px 6px 6px; }
 
   .rooms {
     width: 100vw;

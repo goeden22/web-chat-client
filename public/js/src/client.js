@@ -31,11 +31,11 @@ chat.scroll(350);
 //messagecontainer.innerHTML += generateMessageBlock(message)
 })
 socket.on('updateUserList', (users) => {
-    console.log(users)
+
    if (users.time){
         usersList.setTime(users.time, users.user)
     } else if (!users.time){
-        console.log(users)
+
         usersList.updateUsers(users)
         usersList.append(usersList.usrList);
         roomInfo.append(users)

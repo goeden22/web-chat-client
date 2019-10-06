@@ -7,6 +7,7 @@ function Chat(container, input){
     }
 
     this.generateMessageBlock = function(message){
+   
         if(message.self){
             return `<div class="chat__messagecontainer invertedmessage movedinverted">
                     
@@ -17,14 +18,14 @@ function Chat(container, input){
                 <h1 class="header header--subheader chat__timestamp">${moment(message.time).format('HH:mm:ss')}</h1>
             </div>
             <div class="chat__user">
-                <img src="./img/avatar.jpg" alt="" class="smallavatar">
+                <img src="./img/avatar${message.avatar}.jpg" alt="" class="smallavatar">
                 <h1 class="header header--subheader">${message.from}</h1>
             </div>
         </div>`
         } else{
             return `<div class="chat__messagecontainer moved">
         <div class="chat__user">
-            <img src="./img/avatar.jpg" alt="" class="smallavatar">
+            <img src="./img/avatar${message.avatar}.jpg" alt="" class="smallavatar">
             <h1 class="header header--subheader">${message.from}</h1>
         </div>
         <div class="chat__messageblock">
@@ -39,6 +40,7 @@ function Chat(container, input){
 
     }
     this.appendMessage = function(message){
+     
       this.container.innerHTML += this.generateMessageBlock(message)
       //this.getMessage().lastChild.classList.remove('moved')
       let messages = this.getMessage();

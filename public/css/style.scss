@@ -14,11 +14,11 @@
     
   };
 
-  @mixin shift($property: all, $duration: .3s, $ease: linear){
-	-webkit-transition: $property $duration $ease;
-	-moz-transition: $property $duration $ease;
-	-o-transition: $property $duration $ease;
-	transition: $property $duration $ease;
+  @mixin shift($args...){
+	-webkit-transition: $args;
+	-moz-transition: $args;
+	-o-transition: $args;
+	transition: $args;
 }
 $primary_font : 'Montserrat', serif;
 
@@ -108,6 +108,7 @@ h1,hr{
         font-weight: 500;
     }
 }
+
 .loader{
     height: 100vh;
     width: 100vw;
@@ -115,10 +116,13 @@ h1,hr{
     display: flex;
     justify-items: center;
     justify-content: center;
-    display: none;
+    @include shift(opacity 1s 2s ease-out);
+    opacity: 1;
     position: fixed;
     z-index: 999;
-
+    &--transparent{
+        opacity: 0
+    }
     &__container{
         display: flex;
         justify-content: center;
@@ -131,6 +135,9 @@ h1,hr{
         width: 70px;
         height: 70px;
     }
+}
+.erase{
+    display: none;
 }
 .loginform{
     height: 100vh;
@@ -241,7 +248,7 @@ padding: 20px;
 .users{
     width: 20%;
     background-color: $primary-color;
-    @include shift(transform, .4s, ease-out);
+    @include shift(transform .4s ease-out);
     &__list{
         margin-top: $small-spacing;
     }
@@ -294,7 +301,7 @@ padding: 20px;
 .rooms{
     width: 15%;
     background-color: $secondary-color;
-    @include shift(transform, .4s, ease-out);
+    @include shift(transform .4s ease-out);
     &__topbar{
         height: 45px;
         border-bottom: 1px solid $secondary-light-shaded;
@@ -331,7 +338,7 @@ padding: 20px;
     overflow: hidden;
     cursor: pointer;
     background-color: $secondary-color;
-    @include shift(height, .3s, ease-out);
+    @include shift(height .3s ease-out);
     &__arrow{
         top:0;
         right: 0;
@@ -380,7 +387,7 @@ padding: 20px;
     &__messagecontainer{
         margin: $small-spacing;
         display: flex;
-        @include shift(transform, .3s, ease-out);
+        @include shift(transform .3s ease-out);
     }
     &__message{
         background-color: $primary-color;
@@ -447,7 +454,7 @@ padding: 20px;
     transform: translateX(25px)
 }
 #messageinput{
-    flex: 4
+    width: 100%;
 }
 .messageinverted{
     
@@ -468,7 +475,7 @@ padding: 20px;
     z-index:999;
     background-color: $secondary-color;
     
-    @include shift(transform, .4s, ease-out);
+    @include shift(transform .4s ease-out);
 }
 .anim__on{
     transform: translateX(-100%);
@@ -530,6 +537,12 @@ $break-small: 620px;
         width: 100%;
         &__container{
             padding-top: $small-spacing;
+        }
+        &__paragraph{
+            margin:5px;
+        }
+        &__message{
+            padding: 6px 12px 6px 6px;
         }
     }
     .rooms{

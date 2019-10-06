@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="loader"><div class="loader__container"><h2 class="header header--subheaderLight">Node.js web-chat</h2><img  class="loader__anim"src="./img/svg/dots.svg"/></div></div>
+    <div class="loader" id="loader"><div class="loader__container"><h2 class="header header--subheaderLight">Node.js web-chat</h2><img  class="loader__anim"src="./img/svg/dots.svg"/></div></div>
     <div class="loginform">  
         <div class="loginform__container">
              <h1 class="header header--main loginform__header">Chat client by goeden22</h1>
@@ -49,6 +49,18 @@
     </div>
     <script src='socket.io/socket.io.js'></script>
     <script src='js/src/utils/avatars.js'></script>
+    <script>
+    const loader = document.getElementById('loader');
+   
+    window.addEventListener('load', function(){
+     
+        loader.classList.add('loader--transparent')
+        setTimeout(() => {
+            loader.classList.add('erase')
+        },3000)
+        
+    })
+    </script>
     
 </body>
 

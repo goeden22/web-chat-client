@@ -1,9 +1,11 @@
 const moment = require('moment')
 
-let generateMessage = (from,body, self) => {
+let generateMessage = (user,message, self) => {
+ 
     return {
-        from,
-        body,
+        name: user.name,
+        avatar: user.avatar,
+        body: message,
         timestamp: moment().valueOf(),
         self
     }

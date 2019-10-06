@@ -11,6 +11,7 @@ const Chat = function(container, input, callback){
     }
 
     this.generateMessageBlock = function(message){
+  
         if(message.self){
             return `<div class="chat__messagecontainer invertedmessage movedinverted">
                     
@@ -21,15 +22,15 @@ const Chat = function(container, input, callback){
                 <h1 class="header header--subheader chat__timestamp">${moment(message.time).format('HH:mm:ss')}</h1>
             </div>
             <div class="chat__user">
-                <img src="./img/avatar.jpg" alt="" class="smallavatar">
-                <h1 class="header header--subheader">${message.from}</h1>
+                <img src="./img/avatar${message.avatar}.jpg" alt="" class="smallavatar">
+                <h1 class="header header--subheader">${message.name}</h1>
             </div>
         </div>`
         } else{
             return `<div class="chat__messagecontainer moved">
         <div class="chat__user">
-            <img src="./img/avatar.jpg" alt="" class="smallavatar">
-            <h1 class="header header--subheader">${message.from}</h1>
+            <img src="./img/avatar${message.avatar}.jpg" alt="" class="smallavatar">
+            <h1 class="header header--subheader">${message.name}</h1>
         </div>
         <div class="chat__messageblock">
             <div class="chat__message">
@@ -43,6 +44,7 @@ const Chat = function(container, input, callback){
 
     }
     this.appendMessage = function(message){
+        
       this.container.innerHTML += this.generateMessageBlock(message)
       //this.getMessage().lastChild.classList.remove('moved')
       let messages = this.getMessage();
@@ -67,7 +69,7 @@ const Chat = function(container, input, callback){
 function RoomInfo(id){
     this.container = document.getElementById(id)
     this.generateInfo = (users) =>{
-        return `<img src="./img/avatar.jpg" alt="" class="largeavatar">
+        return `
                 <h1 class="header header--secondary sspace">${users[0].room}</h1>
              
                 <div class="rooms__infogroup">
