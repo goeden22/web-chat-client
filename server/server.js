@@ -21,7 +21,7 @@ app.use(express.static(publicPath))
 
 //LISTENERY
 io.on('connection', (socket) => {
-    console.log('new user connected')
+
   //socket reprezentuje indywidualne połączenie z konkretnym użytkownikiem, io reprezentuje ogólne połączenie dla wszystkich użytkowników
 
   
