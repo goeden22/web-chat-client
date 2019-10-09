@@ -65,7 +65,7 @@ function Chat(container, input){
 function RoomInfo(id){
     this.container = document.getElementById(id)
     this.generateInfo = (users) =>{
-        return `<img src="./img/avatar.jpg" alt="" class="largeavatar">
+        return `
                 <h1 class="header header--secondary sspace">${users[0].room}</h1>
              
                 <div class="rooms__infogroup">
